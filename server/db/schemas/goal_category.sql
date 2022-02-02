@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS goal_category CASCADE
+CREATE TABLE goal_category(
+  goal_id INTEGER REFERENCES goal(id) ON DELETE CASCADE,
+  category_id INTEGER REFERENCES category(id) ON DELETE CASCADE
+)
