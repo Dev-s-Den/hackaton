@@ -3,13 +3,13 @@ import './App.scss';
 
 // Components
 import NavBar from './components/NavBav';
-import Auth from './components/Authorization';
+import Home from './components/Home';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <Auth />
+      <Home />
     </div>
   );
 }
