@@ -1,0 +1,25 @@
+@use "variables" as v;
+
+.navbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  background-color: v.$background-color;
+  border-bottom: v.$test-border;
+  width: 100%;
+  height: 15%;
+
+  .navbar-logo {
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  .navbar-title {
+    font-family: v.$font-family;
+    color: #fff;
+    font-weight: 700;
+  }
+}
