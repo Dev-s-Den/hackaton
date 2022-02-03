@@ -1,14 +1,15 @@
+// Style
 import './App.scss';
 
+// Components
 import NavBar from './components/NavBav';
+import Auth from './components/Authorization';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <header className="App-header">
-        <h1>Welcome to Hackaton</h1>
-      </header>
+      <Auth />
     </div>
   );
 }
