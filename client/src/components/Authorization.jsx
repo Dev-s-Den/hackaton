@@ -15,7 +15,9 @@ export default function Auth(props) {
           </text>
         </section>
         <section className="auth">
-          <form className="form-signin">
+          <form className="form">
+            <input className="input" type="email" placeholder="Email" />
+            <input className="input" type="password" placeholder="Password" />
             <button className="btn btn-primary">Sign in</button>
           </form>
           <section className="separator">
@@ -23,7 +25,16 @@ export default function Auth(props) {
             <text>or</text>
             <hr className="divider"></hr>
           </section>
-          <form className="form-signup">
+          <form className="form">
+            <input className="input" type="text" placeholder="First Name" />
+            <input className="input" type="text" placeholder="Last Name" />
+            <input className="input" type="email" placeholder="Email" />
+            <input className="input" type="password" placeholder="Password" />
+            <input
+              className="input"
+              type="text"
+              placeholder="Confirm Password"
+            />
             <button className="btn btn-primary">Sign up</button>
           </form>
         </section>
