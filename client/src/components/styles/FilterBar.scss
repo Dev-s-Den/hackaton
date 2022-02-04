@@ -34,7 +34,7 @@
 
     .category:hover {
       background-color: v.$color;
-      color: v.$background-color;
+      color: rgba(255, 255, 255);
       cursor: pointer;
       transition: 0.5s;
       transition-timing-function: ease-in;
