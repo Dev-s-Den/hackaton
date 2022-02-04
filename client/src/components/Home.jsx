@@ -5,13 +5,13 @@ import React from "react";
 import "./styles/Home.scss";
 
 // Components
-import Auth from "./Authorization";
+// import Auth from "./Authorization";
+import FilterBar from "./FilterBar";
 
 export default function Home(props) {
   return (
     <React.Fragment>
-      <h1 className="title">Welcome to Hackaton!</h1>
-      <Auth />
+      <FilterBar />
     </React.Fragment>
   );
 }

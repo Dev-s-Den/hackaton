@@ -7,7 +7,8 @@
   flex-direction: column;
   text-align: center;
   width: 100%;
-  background-image: v.$background-image;
+  background: v.$background no-repeat center center fixed;
+  background-size: cover;
   font-family: v.$font-family;
   height: 100vh;
   color: v.$color;
