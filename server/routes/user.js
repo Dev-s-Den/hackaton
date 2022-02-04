@@ -3,6 +3,7 @@ const router = express.Router();
 const { getUser, addUser, checkUser } = require('../db/queries/user')
 const bcrypt = require('bcryptjs');
 const cookieSession = require('cookie-session');
+const { restart } = require('nodemon');
 
 
 module.exports = () => {
@@ -34,9 +35,33 @@ module.exports = () => {
         }
         res.send({
           cookie: req.session.email = data[0].email,
-
+          first_name: data[0].first_name,
+          last_name: data[0].last_name,
+          email: data[0].email
         })
       })
   })
 
+  //get from login
+  router.get('/login', (req, res) => {
+    const user_email = req.session.email
+    if (user_email) {
+      getUser(user_email).then(data => {
+        res.json({
+          first_name: data[0].first_name,
+          last_name: data[0].last_name,
+          email: data[0].email
+        })
+      })
+    } else {
+      return res.status(403).send('Not Logged In')
+    }
+  })
+
+  router.get('logout', (req, res) => {
+    delete req.session.email
+    res.status(200).send('session deleted')
+  })
+
+  return router;
 }
