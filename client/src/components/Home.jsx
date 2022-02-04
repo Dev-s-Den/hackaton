@@ -5,15 +5,22 @@ import React from "react";
 import "./styles/Home.scss";
 
 // Components
-// import Auth from "./Authorization";
+import Auth from "./Authorization";
 import FilterBar from "./FilterBar";
 import Goal from "./Goal";
 
 export default function Home(props) {
+  const { user, setUser } = props;
+
   return (
     <React.Fragment>
-      <FilterBar />
-      <Goal />
+      {!user && <Auth setUser={setUser} />}
+      {user && (
+        <>
+          <FilterBar />
+          <Goal />
+        </>
+      )}
     </React.Fragment>
   );
 }
