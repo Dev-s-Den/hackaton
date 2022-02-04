@@ -1,68 +1,96 @@
 import React from "react";
 
-//styles 
+//styles
 import "./styles/Goal.scss";
 
-export default function Goal(props) {
+// Components
+import Category from "./Category";
 
-  return(
+const categories = ["Resume", "Code", "Jobs", "Applications"];
+
+export default function Goal(props) {
+  return (
     <>
-      <section >
-        <div className='goal'>
-          <div className='goal-header'>
-            <p> content of the goal</p>
-          </div>
-          <div className='goal-content'>
-            <div className="category">
-              <label>
-                <input type='checkbox'/>
-                Resume
-              </label>           
-              <label>
-              <input type='checkbox'/>
-                Research
-              </label>
-              <label>
-              <input type='checkbox'/>
-              Cover Letter
-              </label>
-            </div>
-            <div className='progress'>
-              <p>{0/5}</p>
-            </div>
-          </div>
-          <div className='time'>
+      <ul className="goals-list">
+        <li className="goal">
+          <header className="goal-header">
+            <p className="goal-title">Goal Title</p>
+            <ul className="goal-categories">
+              {categories.map((category) => (
+                <Category key={category} name={category} />
+              ))}
+            </ul>
+          </header>
+          <section className="goal-tasks">
+            <ul className="goal-tasks-list">
+              <li className="goal-task">
+                <label>
+                  <input type="checkbox" />
+                  Resume
+                </label>
+              </li>
+              <li className="goal-task">
+                <label>
+                  <input type="checkbox" />
+                  Research
+                </label>
+              </li>
+              <li className="goal-task">
+                <label>
+                  <input type="checkbox" />
+                  Cover Letter
+                </label>
+              </li>
+            </ul>
+            <section className="goal-progress">
+              <p>Completed:</p>
+              <progress className="progress" value="32" max="100" />
+            </section>
+          </section>
+          <div className="time-remaining">
             <p>5 days remaining</p>
           </div>
-        </div>
-        <div className='goal'>
-          <div className='goal-header'>
-            <p> content of the goal2</p>
-          </div>
-          <div className='goal-content'>
-            <div className="category">
-              <label>
-                <input type='checkbox'/>
-                Resume
-              </label>           
-              <label>
-              <input type='checkbox'/>
-                Research
-              </label>
-              <label>
-              <input type='checkbox'/>
-              Cover Letter
-              </label>
-            </div>
-            <div className='progress'>
-              <p>{0/5}</p>
-            </div>
-          </div>
-          <div className='time'>
+        </li>
+        <li className="goal">
+          <header className="goal-header">
+            <p className="goal-title">Goal Title</p>
+            <ul className="goal-categories">
+              {categories.map((category) => (
+                <Category key={category} name={category} />
+              ))}
+            </ul>
+          </header>
+          <section className="goal-tasks">
+            <ul className="goal-tasks-list">
+              <li className="goal-task">
+                <label>
+                  <input type="checkbox" />
+                  Resume
+                </label>
+              </li>
+              <li className="goal-task">
+                <label>
+                  <input type="checkbox" />
+                  Research
+                </label>
+              </li>
+              <li className="goal-task">
+                <label>
+                  <input type="checkbox" />
+                  Cover Letter
+                </label>
+              </li>
+            </ul>
+            <section className="goal-progress">
+              <p>Completed:</p>
+              <progress className="progress" value="32" max="100" />
+            </section>
+          </section>
+          <div className="time-remaining">
             <p>5 days remaining</p>
           </div>
-        </div>
-      </section>
+        </li>
+      </ul>
     </>
-  )
+  );
 }
