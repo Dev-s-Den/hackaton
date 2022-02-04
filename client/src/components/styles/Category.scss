@@ -1,0 +1,23 @@
+@use "variables" as v;
+
+.category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  border: 1px solid v.$color;
+  border-radius: 30px;
+  margin: 1px;
+
+  P {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
