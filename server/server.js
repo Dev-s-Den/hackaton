@@ -4,7 +4,7 @@ const path = require('path');
 const cookieSession = require('cookie-session');
 
 // requiring routes go here:____________________________________
-
+const userRouter = require('./routes/user');
 
 
 
@@ -20,6 +20,6 @@ app.use(cookieSession({
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes go here:_____________________________________________
-
+app.use('/api/user', userRouter())
 
 module.exports = app;
