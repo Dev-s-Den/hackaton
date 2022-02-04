@@ -1,1 +1,35 @@
 @use "variables" as v;
+
+.goal {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: start;
+  border: 1px solid black;
+  font-family: v.$font-family;
+  flex: 1;
+
+  .goal-header {
+    border: 1px solid black;
+    padding: 5px;
+  }
+  .goal-content {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 5px;
+  }
+
+  .time {
+    padding: 5px;
+  }
+
+  .category {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+  }
+  .progress {
+    display: flex;
+    width: 50%;
+  }
+}
