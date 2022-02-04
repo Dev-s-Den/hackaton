@@ -35,6 +35,33 @@ export default function Goal(props) {
             <p>5 days remaining</p>
           </div>
         </div>
+        <div className='goal'>
+          <div className='goal-header'>
+            <p> content of the goal2</p>
+          </div>
+          <div className='goal-content'>
+            <div className="category">
+              <label>
+                <input type='checkbox'/>
+                Resume
+              </label>           
+              <label>
+              <input type='checkbox'/>
+                Research
+              </label>
+              <label>
+              <input type='checkbox'/>
+              Cover Letter
+              </label>
+            </div>
+            <div className='progress'>
+              <p>{0/5}</p>
+            </div>
+          </div>
+          <div className='time'>
+            <p>5 days remaining</p>
+          </div>
+        </div>
       </section>
     </>
   )

@@ -1,19 +1,26 @@
 @use "variables" as v;
-
+section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 .goal {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: start;
-  border: 1px solid black;
   font-family: v.$font-family;
   flex: 1;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 10px;
 
   .goal-header {
+    background-color: rgba(43, 183, 226, 0.7);
     border: 1px solid black;
     padding: 5px;
   }
   .goal-content {
+    background-color: blanchedalmond;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -30,6 +37,7 @@
     width: 50%;
     flex-direction: column;
   }
+
   .progress {
     display: flex;
     justify-content: center;
