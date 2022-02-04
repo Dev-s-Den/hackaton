@@ -1,6 +1,6 @@
 const dbConnection = require('../connection');
 
-const getUsers = async (email) => {
+const getUser = async (email) => {
   const values = [email];
   try {
     const data = await dbConnection.query('SELECT * FROM users WHERE email=$1;', values);
@@ -11,7 +11,7 @@ const getUsers = async (email) => {
   }
 }
 
-const addUsers = async (first_name, last_name, email, password) => {
+const addUser = async (first_name, last_name, email, password) => {
   const values = [first_name, last_name, email, password];
   try {
     const data = await dbConnection.query('INSERT INTO user (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *;', values);
@@ -33,4 +33,4 @@ const checkUser = async (email) => {
   }
 }
 
-module.exports = { getUsers, addUsers, checkUser }
+module.exports = { getUser, addUser, checkUser }
