@@ -5,6 +5,6 @@ CREATE TABLE goal(
   name VARCHAR(255) NOT NULL, 
   content TEXT, 
   goal_end DATE NOT NULL,
-  completed BOOLEAN NOT NULL,
+  completed TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
