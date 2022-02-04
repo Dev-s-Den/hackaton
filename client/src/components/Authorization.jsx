@@ -6,13 +6,13 @@ export default function Auth(props) {
     <>
       <div className="home">
         <section className="text">
-          <text>
+          <p>
             Lost track of time and assignments? Can't keep track of due dates?
-          </text>
-          <text>
+          </p>
+          <p>
             Join us today! Hackaton will help you manage your time, projects and
             goals!
-          </text>
+          </p>
         </section>
         <section className="auth">
           <form className="form">
@@ -22,7 +22,7 @@ export default function Auth(props) {
           </form>
           <section className="separator">
             <hr className="divider"></hr>
-            <text>or</text>
+            <p>or</p>
             <hr className="divider"></hr>
           </section>
           <form className="form">
