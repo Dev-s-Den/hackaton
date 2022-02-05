@@ -21,11 +21,12 @@ function App() {
     axios.get('/api/user/login')
       .then(data => {
         setUser(data.data)
-        if (!data.data) {
-          return navigate('/')
-        }
       })
-      .catch(err => console.error(err))
+      .catch(err => {
+        console.error(err)
+
+        return navigate('/login')
+      })
 
   }, [])
 
@@ -36,7 +37,7 @@ function App() {
       <Routes>
         {!user && <Route path='/login' element={<Auth setUser={setUser} user={user} />} />}
         {user && <Route path='/' element={<>
-          <FilterBar />
+          <FilterBar user={user} />
           <Goal />
         </>} />}
       </Routes>
