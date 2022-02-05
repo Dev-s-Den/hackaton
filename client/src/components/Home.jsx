@@ -1,5 +1,5 @@
-// Libraries
-import React from "react";
+// Style
+import "./styles/Home.scss";
 
 // Components
 import Auth from "./Authorization";
@@ -10,7 +10,7 @@ export default function Home(props) {
   const { user, setUser } = props;
 
   return (
-    <React.Fragment>
+    <section className="home">
       {!user && <Auth setUser={setUser} />}
       {user && (
         <>
@@ -18,6 +18,6 @@ export default function Home(props) {
           <Goal />
         </>
       )}
-    </React.Fragment>
+    </section>
   );
 }
