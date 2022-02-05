@@ -2,9 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { getUser, addUser, checkUser, getUserById } = require('../db/queries/user')
 const bcrypt = require('bcryptjs');
-const cookieSession = require('cookie-session');
-const { restart } = require('nodemon');
-
 
 module.exports = () => {
   //get user from Database once you are logged in.
@@ -48,9 +45,7 @@ module.exports = () => {
 
   //get from login
   router.get('/login', (req, res) => {
-    console.log('this is the session request', req.session)
     const user_email = req.session.id
-    console.log(user_email);
     if (user_email) {
       getUserById(user_email).then(data => {
         res.json({

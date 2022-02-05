@@ -1,7 +1,7 @@
 // Libraries
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
+import axios from "axios";
 
 // Helpers
 import {
@@ -16,20 +16,21 @@ import "./styles/Authorization.scss";
 
 export default function Auth(props) {
   const navigate = useNavigate();
-  const { setUser, user } = props;
+  const { setUser } = props;
 
   useEffect(() => {
-    axios.get('/api/user/login')
-      .then(data => {
-        setUser(data.data)
-        navigate('/')
+    axios
+      .get("/api/user/login")
+      .then((data) => {
+        setUser(data.data);
+        navigate("/");
       })
-      .catch(err => {
-        console.error(err)
-
-        return navigate('/login')
-      })
-  }, [])
+      .catch((err) => {
+        console.error(err);
+        return navigate("/login");
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // States
   const [userData, setUserData] = useState({

@@ -12,7 +12,6 @@ import Auth from "./components/Authorization";
 import FilterBar from "./components/FilterBar";
 import Goal from "./components/Goal";
 
-
 function App() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -24,12 +23,10 @@ function App() {
       })
       .catch(err => {
         console.error(err)
-
         return navigate('/login')
       })
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
 
   return (
     <div className="App">

@@ -20,8 +20,8 @@ const addUser = async (first_name, last_name, email, password) => {
     console.error(err.message);
     return err.message;
   }
-
 }
+
 const checkUser = async (email) => {
   const values = [email];
   try {
