@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getUser, addUser, checkUser } = require('../db/queries/user')
+const { getUser, addUser, checkUser, getUserById } = require('../db/queries/user')
 const bcrypt = require('bcryptjs');
 const cookieSession = require('cookie-session');
 const { restart } = require('nodemon');
@@ -48,9 +48,9 @@ module.exports = () => {
 
   //get from login
   router.get('/login', (req, res) => {
-    const user_email = req.session.email
-    if (user_email) {
-      getUser(user_email).then(data => {
+    const user_id = req.session.id
+    if (user_id) {
+      getUserById(user_id).then(data => {
         res.json({
           first_name: data[0].first_name,
           last_name: data[0].last_name,
@@ -63,7 +63,7 @@ module.exports = () => {
   })
 
   router.get('logout', (req, res) => {
-    delete req.session.email
+    delete req.session.id
     res.status(200).send('session deleted')
   })
 
