@@ -19,11 +19,12 @@ module.exports = () => {
         const hashPassword = bcrypt.hashSync(req.body.password, salt)
         addUser(req.body.first_name, req.body.last_name, req.body.email, hashPassword)
           .then(data => {
+            req.session.id = data[0].id;
             res.send({
-              cookie: req.session.email = data[0].email,
+              cookie: req.session.id,
+              id: data[0].id,
               first_name: data[0].first_name,
               last_name: data[0].last_name,
-              email: data[0].email
             })
           })
       })
