@@ -33,4 +33,15 @@ const checkUser = async (email) => {
   }
 }
 
-module.exports = { getUser, addUser, checkUser }
+const getUserById = async (id) => {
+  const values = [id];
+  try {
+    const data = await dbConnection.query('SELECT * FROM users WHERE id=$1;', values);
+    return data.rows;
+  } catch (err) {
+    console.error(err.message);
+    return err.message;
+  }
+}
+
+module.exports = { getUser, addUser, checkUser, getUserById }
