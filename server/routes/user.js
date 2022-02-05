@@ -48,9 +48,11 @@ module.exports = () => {
 
   //get from login
   router.get('/login', (req, res) => {
-    const user_id = req.session.id
-    if (user_id) {
-      getUserById(user_id).then(data => {
+    console.log('this is the session request', req.session)
+    const user_email = req.session.email
+    console.log(user_email);
+    if (user_email) {
+      getUser(user_email).then(data => {
         res.json({
           first_name: data[0].first_name,
           last_name: data[0].last_name,
