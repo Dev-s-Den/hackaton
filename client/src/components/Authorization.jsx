@@ -1,7 +1,14 @@
 // Libraries
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+// Helpers
+import {
+  handleSubmit,
+  handleLoginSubmit,
+  handleChange,
+  handleLoginChange,
+} from "./helpers/registerationHelpers";
 
 // Style
 import "./styles/Authorization.scss";
@@ -9,6 +16,8 @@ import "./styles/Authorization.scss";
 export default function Auth(props) {
   const navigate = useNavigate();
   const { setUser } = props;
+
+  // States
   const [userData, setUserData] = useState({
     first_name: "",
     last_name: "",
@@ -21,39 +30,6 @@ export default function Auth(props) {
     email: "",
     password: "",
   });
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    axios.post("/api/user/", userData).then((data) => {
-      setUser({ ...data.data });
-      navigate("/");
-    });
-  };
-  const handleLoginSubmit = (event) => {
-    event.preventDefault();
-
-    axios
-      .post("/api/user/login", userLoginData)
-      .then((data) => {
-        setUser({ ...data.data });
-        navigate("/");
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-
-  // Functions
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setUserData({ ...userData, [name]: value });
-  };
-  const handleLoginChange = (event) => {
-    const { name, value } = event.target;
-    console.log(event.target.name);
-    setUserLoginData({ ...userLoginData, [name]: value });
-  };
 
   return (
     <>
@@ -68,14 +44,21 @@ export default function Auth(props) {
           </p>
         </section>
         <section className="auth">
-          <form className="form" onSubmit={handleLoginSubmit}>
+          <form
+            className="form"
+            onSubmit={(e) => {
+              handleLoginSubmit(e, userLoginData, setUser, navigate);
+            }}
+          >
             <input
               className="input"
               type="email"
               placeholder="Email"
               name="email"
               value={userLoginData.email}
-              onChange={handleLoginChange}
+              onChange={(e) => {
+                handleLoginChange(e, userLoginData, setUserLoginData);
+              }}
             />
             <input
               className="input"
@@ -83,7 +66,9 @@ export default function Auth(props) {
               placeholder="Password"
               name="password"
               value={userLoginData.password}
-              onChange={handleLoginChange}
+              onChange={(e) => {
+                handleLoginChange(e, userLoginData, setUserLoginData);
+              }}
             />
             <button className="btn btn-primary">Sign in</button>
           </form>
@@ -92,14 +77,21 @@ export default function Auth(props) {
             <p>or</p>
             <hr className="divider"></hr>
           </section>
-          <form className="form" onSubmit={handleSubmit}>
+          <form
+            className="form"
+            onSubmit={(e) => {
+              handleSubmit(e, userData, setUser, navigate);
+            }}
+          >
             <input
               className="input"
               type="text"
               placeholder="First Name"
               name="first_name"
               value={userData.first_name}
-              onChange={handleChange}
+              onChange={(e) => {
+                handleChange(e, userData, setUserData);
+              }}
             />
             <input
               className="input"
@@ -107,7 +99,9 @@ export default function Auth(props) {
               placeholder="Last Name"
               name="last_name"
               value={userData.last_name}
-              onChange={handleChange}
+              onChange={(e) => {
+                handleChange(e, userData, setUserData);
+              }}
             />
             <input
               className="input"
@@ -115,7 +109,9 @@ export default function Auth(props) {
               placeholder="Email"
               name="email"
               value={userData.email}
-              onChange={handleChange}
+              onChange={(e) => {
+                handleChange(e, userData, setUserData);
+              }}
             />
             <input
               className="input"
@@ -123,7 +119,9 @@ export default function Auth(props) {
               placeholder="Password"
               name="password"
               value={userData.password}
-              onChange={handleChange}
+              onChange={(e) => {
+                handleChange(e, userData, setUserData);
+              }}
             />
             <input
               className="input"
@@ -131,7 +129,9 @@ export default function Auth(props) {
               placeholder="Confirm Password"
               name="confirm_password"
               value={userData.confirm_password}
-              onChange={handleChange}
+              onChange={(e) => {
+                handleChange(e, userData, setUserData);
+              }}
             />
             <button className="btn btn-primary">Sign up</button>
           </form>
