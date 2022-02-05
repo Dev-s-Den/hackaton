@@ -14,7 +14,7 @@ export default function Home(props) {
 
   return (
     <React.Fragment>
-      {!user && <Auth setUser={setUser} />}
+      {!user && <Auth setUser={setUser} user={user} />}
       {user && (
         <>
           <FilterBar />
