@@ -1,6 +1,7 @@
 // Libraries
 import { useState } from "react";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 // Style
 import "./styles/Authorization.scss";
@@ -17,10 +18,12 @@ export default function Auth(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post("/api/user/", userData).then((data) => console.log(data));
-  };
 
-  console.log(props.user);
+    axios.post("/api/user/", userData).then((data) => {
+      setUser({ ...data.data });
+      return <Navigate to="/" />;
+    });
+  };
 
   // Functions
   const handleChange = (event) => {
