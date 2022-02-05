@@ -14,15 +14,18 @@ module.exports = () => {
 
   //create user
   router.post('/', (req, res) => {
-    const hashPassword = bcrypt.hashSync(req.body.password, 10)
-    addUser(req.body.first_name, req.body.last_name, req.body.email, hashPassword)
-      .then(data => {
-        res.send({
-          cookie: req.session.email = data[0].email,
-          first_name: data[0].first_name,
-          last_name: data[0].last_name,
-          email: data[0].email
-        })
+    bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS))
+      .then(salt => {
+        const hashPassword = bcrypt.hashSync(req.body.password, salt)
+        addUser(req.body.first_name, req.body.last_name, req.body.email, hashPassword)
+          .then(data => {
+            res.send({
+              cookie: req.session.email = data[0].email,
+              first_name: data[0].first_name,
+              last_name: data[0].last_name,
+              email: data[0].email
+            })
+          })
       })
   })
 
