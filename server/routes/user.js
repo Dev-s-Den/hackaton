@@ -38,7 +38,7 @@ module.exports = () => {
           return res.send('Incorrect Credentials').status(403);
         }
         res.send({
-          cookie: req.session.email = data[0].email,
+          cookie: req.session.id = data[0].id,
           first_name: data[0].first_name,
           last_name: data[0].last_name,
           email: data[0].email
@@ -49,10 +49,10 @@ module.exports = () => {
   //get from login
   router.get('/login', (req, res) => {
     console.log('this is the session request', req.session)
-    const user_email = req.session.email
+    const user_email = req.session.id
     console.log(user_email);
     if (user_email) {
-      getUser(user_email).then(data => {
+      getUserById(user_email).then(data => {
         res.json({
           first_name: data[0].first_name,
           last_name: data[0].last_name,
