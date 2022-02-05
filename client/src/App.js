@@ -1,6 +1,6 @@
 // libraries
 import { useState, useEffect } from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 // Style
@@ -8,16 +8,22 @@ import './App.scss';
 
 // Components
 import NavBar from './components/NavBav';
-import Home from './components/Home';
+import Auth from "./components/Authorization";
+import FilterBar from "./components/FilterBar";
+import Goal from "./components/Goal";
 
 
 function App() {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('/api/user/login')
       .then(data => {
         setUser(data.data)
+        if (!data.data) {
+          return navigate('/')
+        }
       })
       .catch(err => console.error(err))
 
@@ -28,7 +34,11 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
-        <Route path='/' element={<Home setUser={setUser} user={user} />} />
+        {!user && <Route path='/login' element={<Auth setUser={setUser} user={user} />} />}
+        {user && <Route path='/' element={<>
+          <FilterBar />
+          <Goal />
+        </>} />}
       </Routes>
     </div>
   );

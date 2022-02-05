@@ -1,5 +1,5 @@
 // Libraries
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Helpers
@@ -15,7 +15,15 @@ import "./styles/Authorization.scss";
 
 export default function Auth(props) {
   const navigate = useNavigate();
-  const { setUser } = props;
+  const { setUser, user } = props;
+
+  useEffect(()=> {
+    if(user) {
+      debugger
+      return navigate('/')
+    }
+  }
+  ,[])
 
   // States
   const [userData, setUserData] = useState({
