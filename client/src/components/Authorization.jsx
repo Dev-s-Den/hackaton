@@ -17,6 +17,11 @@ export default function Auth(props) {
     confirm_password: "",
   });
 
+  const [userLoginData, setUserLoginData] = useState({
+    email: "",
+    password: "",
+  });
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -25,11 +30,29 @@ export default function Auth(props) {
       navigate("/");
     });
   };
+  const handleLoginSubmit = (event) => {
+    event.preventDefault();
+
+    axios
+      .post("/api/user/login", userLoginData)
+      .then((data) => {
+        setUser({ ...data.data });
+        navigate("/");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   // Functions
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUserData({ ...userData, [name]: value });
+  };
+  const handleLoginChange = (event) => {
+    const { name, value } = event.target;
+    console.log(event.target.name);
+    setUserLoginData({ ...userLoginData, [name]: value });
   };
 
   return (
@@ -45,9 +68,23 @@ export default function Auth(props) {
           </p>
         </section>
         <section className="auth">
-          <form className="form">
-            <input className="input" type="email" placeholder="Email" />
-            <input className="input" type="password" placeholder="Password" />
+          <form className="form" onSubmit={handleLoginSubmit}>
+            <input
+              className="input"
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={userLoginData.email}
+              onChange={handleLoginChange}
+            />
+            <input
+              className="input"
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={userLoginData.password}
+              onChange={handleLoginChange}
+            />
             <button className="btn btn-primary">Sign in</button>
           </form>
           <section className="separator">
