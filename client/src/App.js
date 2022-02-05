@@ -1,9 +1,10 @@
 // libraries
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Routes,
   Route
 } from "react-router-dom";
+import axios from "axios";
 
 // Style
 import './App.scss';
@@ -12,9 +13,12 @@ import './App.scss';
 import NavBar from './components/NavBav';
 import Home from './components/Home';
 
-
 function App() {
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    axios.get('/api/user/login', user).then(data => { setUser(data[0].data) });
+  }, [user])
 
   return (
     <div className="App">
