@@ -1,12 +1,13 @@
 // Libraries
 import { useState } from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // Style
 import "./styles/Authorization.scss";
 
 export default function Auth(props) {
+  const navigate = useNavigate();
   const { setUser } = props;
   const [userData, setUserData] = useState({
     first_name: "",
@@ -21,7 +22,7 @@ export default function Auth(props) {
 
     axios.post("/api/user/", userData).then((data) => {
       setUser({ ...data.data });
-      return <Navigate to="/" />;
+      navigate("/");
     });
   };
 
