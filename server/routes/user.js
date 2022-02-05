@@ -50,7 +50,7 @@ module.exports = () => {
   router.get('/login', (req, res) => {
     const user_id = req.session.id
     if (user_id) {
-      getUser(user_email).then(data => {
+      getUserById(user_id).then(data => {
         res.json({
           first_name: data[0].first_name,
           last_name: data[0].last_name,
@@ -63,7 +63,7 @@ module.exports = () => {
   })
 
   router.get('logout', (req, res) => {
-    delete req.session.email
+    delete req.session.id
     res.status(200).send('session deleted')
   })
 
