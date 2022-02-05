@@ -14,7 +14,7 @@ import Home from './components/Home';
 
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("");
 
   return (
     <div className="App">
