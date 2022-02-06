@@ -35,7 +35,7 @@ function App() {
         {!user && <Route path='/login' element={<Auth setUser={setUser} user={user} />} />}
         {user && <Route path='/' element={<>
           <FilterBar user={user} />
-          <Goal />
+          <Goal user={user} />
         </>} />}
       </Routes>
     </div>
