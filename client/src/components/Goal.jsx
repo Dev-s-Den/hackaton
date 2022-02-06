@@ -6,16 +6,20 @@ import Task from "./Task";
 
 import { calculateTime } from "./helpers/goalHelper";
 
-const categories = ["1", "2", "3"];
 export default function Goal(props) {
   const { goal } = props;
   const [tasks, setTasks] = useState([]);
-  console.log(goal.id);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    axios.get(`/api/task/${goal.id}`).then((data) => {
-      setTasks([...data.data]);
+    Promise.all([
+      axios.get(`/api/task/${goal.id}`),
+      axios.get(`/api/category/${goal.id}`),
+    ]).then((data) => {
+      setTasks([...data[0].data]);
+      setCategories([...data[1].data]);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -23,9 +27,15 @@ export default function Goal(props) {
       <header className="goal-header">
         <p className="goal-title">{goal.name}</p>
         <ul className="goal-categories">
-          {categories.map((category) => (
-            <Category key={category} name={category} />
-          ))}
+          {categories.map((category) => {
+            return (
+              <Category
+                key={`${goal.id}-${category.name}`}
+                color={category.color}
+                name={category.name}
+              />
+            );
+          })}
         </ul>
       </header>
       <section className="goal-tasks">
