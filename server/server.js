@@ -7,8 +7,7 @@ const cookieSession = require('cookie-session');
 const userRouter = require('./routes/user');
 const goalRouter = require('./routes/goal');
 const taskRouter = require('./routes/task');
-
-
+const categoryRouter = require('./routes/category');
 
 const app = express();
 // app.use(logger('dev')); only if we are using morgan
@@ -24,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //routes go here:_____________________________________________
 app.use('/api/user', userRouter());
 app.use('/api/goal', goalRouter());
-app.use('/api/task', taskRouter())
+app.use('/api/task', taskRouter());
+app.use('/api/category', categoryRouter());
 
 module.exports = app;
