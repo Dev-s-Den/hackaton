@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 
 //styles
 import "./styles/Goal.scss";
@@ -9,6 +10,15 @@ import Category from "./Category";
 const categories = ["Resume", "Code", "Jobs", "Applications"];
 
 export default function Goal(props) {
+  const { user } = props;
+  console.log(user);
+
+  useEffect(() => {
+    axios.get(`/api/goal/${user.id}`).then((data) => {
+      console.log(data.data);
+    });
+  });
+
   return (
     <>
       <ul className="goals-list">
