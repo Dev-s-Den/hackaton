@@ -15,7 +15,7 @@ const addGoal = async (userID, name, content, goal_end) => {
   const values = [userID, name, content, goal_end];
   try {
     const data = await dbConnection.query(`INSERT INTO goal(
-      user_id, name, content, goal_end) VALUES ($1, $2, $3, $4)`, values);
+      user_id, name, content, goal_end) VALUES ($1, $2, $3, $4) RETURNING *`, values);
   } catch (err) {
     console.error(err.message);
     return err.message;
