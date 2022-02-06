@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 //styles
 import "./styles/Goal.scss";
@@ -9,6 +9,9 @@ import Category from "./Category";
 const categories = ["Resume", "Code", "Jobs", "Applications"];
 
 export default function Goal(props) {
+
+
+
   return (
     <>
       <ul className="goals-list">
