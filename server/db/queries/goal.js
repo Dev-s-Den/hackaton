@@ -15,7 +15,7 @@ const addGoal = async (userID, name, content, goal_end) => {
   const values = [userID, name, content, goal_end];
   try {
     const data = await dbConnection.query(`INSERT INTO goal(
-      user_id, name, content, goal_end) VALUES ($1, $2, $3, $4) RETURNING *`, values);
+      user_id, name, goal_end) VALUES ($1, $2, $3, $4) RETURNING *`, values);
   } catch (err) {
     console.error(err.message);
     return err.message;
@@ -32,10 +32,10 @@ const deleteGoal = async (goalID) => {
   }
 }
 
-const updateTasks = async (goalID, content) => {
-  const values = [content, goalID];
+const updateTasks = async (goalID, task_id) => {
+  const values = [task_id, goalID];
   try {
-    const data = await dbConnection.query(`UPDATE goal SET content = $1 WHERE id=$2`, values)
+    const data = await dbConnection.query(`UPDATE goal SET task_id = $1 WHERE id=$2`, values)
   } catch (err) {
     console.error(err.message);
     return err.message;
