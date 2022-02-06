@@ -3,8 +3,8 @@ const router = express.Router();
 const { getTasks, addTask, updateTask } = require('../db/queries/task');
 
 module.exports = () => {
-  router.get('/:task_id', (req, res) => {
-    getTasks(req.params.id)
+  router.get('/:goal_id', (req, res) => {
+    getTasks(req.params.goal_id)
       .then(data => res.json(data))
   })
 
@@ -14,7 +14,8 @@ module.exports = () => {
   })
 
   router.put('/:id', (req, res) => {
-    updateTask(req.body.id, req.body.completed)
+
+    updateTask(req.params.id, req.body.completed)
       .then(data => res.json(data))
   })
 

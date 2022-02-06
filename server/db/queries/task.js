@@ -27,7 +27,7 @@ const updateTask = async (id, boolean) => {
   const values = [boolean, id];
   try {
     const data = await dbConnection.query(`UPDATE task SET
-    completed = $1 WHERE  id=$1 RETURNING *`, values)
+    completed = $1 WHERE  id=$2 RETURNING *`, values)
     return data.rows
   } catch (err) {
     console.error(err.message);
