@@ -23,7 +23,7 @@ const addTask = async (name) => {
   }
 }
 
-const updatetask = async (id, boolean) => {
+const updateTask = async (id, boolean) => {
   const values = [boolean];
   try {
     const data = await dbConnection.query(`UPDATE task SET
@@ -33,3 +33,6 @@ const updatetask = async (id, boolean) => {
     return err.message;
   }
 }
+
+
+module.exports = { getTasks, addTask, updateTask }

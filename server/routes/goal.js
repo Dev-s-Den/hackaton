@@ -24,5 +24,5 @@ module.exports = () => {
       .then(data => res.json(data))
   })
 
-  return router
+  return router;
 }
