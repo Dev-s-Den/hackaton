@@ -15,11 +15,14 @@ module.exports = () => {
   })
 
   router.put('/goal/:id', (req, res) => {
-    updatePostsLikes(req.body.id, req.body.like)
+    updateTasks(req.body.id, req.body.content)
       .then(data => res.json(data))
   })
 
-
+  router.delete('/goal/:id', (req, res) => {
+    deleteGoal(req.body.id)
+      .then(data => res.json(data))
+  })
 
   return router
 }

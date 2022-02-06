@@ -23,7 +23,7 @@ const addGoal = async (userID, name, content, goal_end) => {
 }
 
 const deleteGoal = async (goalID) => {
-  const values = [goalId];
+  const values = [goalID];
   try {
     const data = await dbConnection.query(`DELETE FROM goal WHERE id=$1`, values)
   } catch (err) {
