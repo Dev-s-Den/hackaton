@@ -93,12 +93,17 @@ export default function Goal(props) {
               </header>
               <section className="goal-tasks">
                 <ul className="goal-tasks-list">
-                  <li className="goal-task">
-                    <label>
-                      <input type="checkbox" />
-                      Resume
-                    </label>
-                  </li>
+                  {JSON.parse(goal.task_id).map((task, index) => {
+                    return (
+                      <li className="goal-task" key={index}>
+                        <label>
+                          <input type="checkbox" checked={task.completed} />
+                          {task.name}
+                        </label>
+                      </li>
+                    );
+                  })}
+
                   <li className="goal-task">
                     <label>
                       <input type="checkbox" />
