@@ -1,5 +1,4 @@
 const express = require('express');
-const { updateTasks } = require('../db/queries/goal');
 const router = express.Router();
 const { getTasks, addTask, updateTask } = require('../db/queries/task');
 
