@@ -41,3 +41,6 @@ const updateTasks = async (goalID, content) => {
     return err.message;
   }
 }
+
+
+module.exports = { getGoals, addGoal, deleteGoal, updateTasks };
