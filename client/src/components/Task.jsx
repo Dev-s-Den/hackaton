@@ -11,6 +11,7 @@ export default function Task(props) {
 
   useEffect(() => {
     axios.put(`/api/task/${task.id}`, checkbox).then((data) => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [boxChange]);
 
   return (
