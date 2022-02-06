@@ -29,6 +29,18 @@ export default function Goal(props) {
 
   // States
   const [goals, setGoals] = useState([]);
+  const [tasks, setTasks] = useState([]);
+
+  const handleChange = (event, key) => {
+    event.preventDefault();
+    setGoals([...goals, (goals[key].completed = event.target)]);
+  };
+
+  const getTasks = (goals) => {
+    goals.forEach((goal) => {
+      return setTasks([...JSON.parse(goal.task_id)]);
+    });
+  };
 
   useEffect(() => {
     axios.get(`/api/goal/${user.id}`).then((data) => {
@@ -37,6 +49,8 @@ export default function Goal(props) {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  console.log(tasks);
 
   return (
     <>
@@ -93,11 +107,17 @@ export default function Goal(props) {
               </header>
               <section className="goal-tasks">
                 <ul className="goal-tasks-list">
-                  {JSON.parse(goal.task_id).map((task, index) => {
+                  {tasks.map((task, index) => {
                     return (
                       <li className="goal-task" key={index}>
                         <label>
-                          <input type="checkbox" checked={task.completed} />
+                          <input
+                            type="checkbox"
+                            checked={task.completed}
+                            onChange={(e) => {
+                              handleChange(e, index);
+                            }}
+                          />
                           {task.name}
                         </label>
                       </li>
