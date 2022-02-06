@@ -14,12 +14,12 @@ module.exports = () => {
       .then(data => res.json(data))
   })
 
-  router.put('/goal/:id', (req, res) => {
+  router.put('/:id', (req, res) => {
     updateTasks(req.body.id, req.body.content)
       .then(data => res.json(data))
   })
 
-  router.delete('/goal/:id', (req, res) => {
+  router.delete('/:id', (req, res) => {
     deleteGoal(req.body.id)
       .then(data => res.json(data))
   })
