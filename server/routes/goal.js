@@ -5,7 +5,7 @@ const { getGoals, addGoal, deleteGoal, updateTasks } = require('../db/queries/go
 module.exports = () => {
 
   router.get('/:userID', (req, res) => {
-    getGoals(req.params.id)
+    getGoals(req.params.userID)
       .then(data => res.json(data))
   })
 

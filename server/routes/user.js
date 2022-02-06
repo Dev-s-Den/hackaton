@@ -36,6 +36,7 @@ module.exports = () => {
         }
         res.send({
           cookie: req.session.id = data[0].id,
+          id: data[0].id,
           first_name: data[0].first_name,
           last_name: data[0].last_name,
           email: data[0].email
@@ -49,6 +50,7 @@ module.exports = () => {
     if (user_email) {
       getUserById(user_email).then(data => {
         res.json({
+          id: data[0].id,
           first_name: data[0].first_name,
           last_name: data[0].last_name,
           email: data[0].email
