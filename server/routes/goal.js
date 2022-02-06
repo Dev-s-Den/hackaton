@@ -15,7 +15,7 @@ module.exports = () => {
   })
 
   router.put('/:id', (req, res) => {
-    updateTasks(req.body.id, req.body.content)
+    updateTasks(req.body.id, req.body.task_id)
       .then(data => res.json(data))
   })
 
@@ -24,5 +24,5 @@ module.exports = () => {
       .then(data => res.json(data))
   })
 
-  return router
+  return router;
 }
