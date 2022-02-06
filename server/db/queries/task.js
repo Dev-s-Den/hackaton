@@ -1,9 +1,9 @@
 const dbConnection = require('../connection');
 
-const getTasks = async (task_id) => {
-  const values = [task_id];
+const getTasks = async (goal_id) => {
+  const values = [goal_id];
   try {
-    const data = await dbConnection.query('SELECT * FROM task WHERE id=$1', values);
+    const data = await dbConnection.query('SELECT * FROM task WHERE goal_id=$1', values);
     return data.rows;
   } catch (err) {
     console.error(err.message);

@@ -1,154 +1,66 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-//styles
-import "./styles/Goal.scss";
-
-// Components
 import Category from "./Category";
 
-const categories = ["Resume", "Code", "Jobs", "Applications"];
+import { calculateTime } from "./helpers/goalHelper";
 
-// Helpers
-const calculateTime = (time) => {
-  const today = new Date();
-  const date2 = new Date(time);
-  const timeRemaining =
-    (date2.getTime() - today.getTime()) / (1000 * 3600 * 24);
-  if (timeRemaining !== 0) {
-    if (timeRemaining !== 1) {
-      return `${timeRemaining.toFixed()} days remaining`;
-    }
-    return `${timeRemaining.toFixed()} day remaining`;
-  }
-  return `0 days remaining`;
-};
-
+const categories = ["1", "2", "3"];
 export default function Goal(props) {
-  const { user } = props;
-
-  // States
-  const [goals, setGoals] = useState([]);
+  const { goal } = props;
   const [tasks, setTasks] = useState([]);
-
-  const handleChange = (event, key) => {
-    event.preventDefault();
-    setGoals([...goals, (goals[key].completed = event.target)]);
-  };
-
-  const getTasks = (goals) => {
-    goals.forEach((goal) => {
-      return setTasks([...JSON.parse(goal.task_id)]);
-    });
-  };
+  console.log(props);
 
   useEffect(() => {
-    axios.get(`/api/goal/${user.id}`).then((data) => {
-      console.log(data.data);
-      setGoals([...data.data]);
+    axios.get(`/api/task/${goal.id}`).then((data) => {
+      console.log(data[0]);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  console.log(tasks);
+  });
 
   return (
-    <>
-      <ul className="goals-list">
-        <li className="goal" key="fuckyou">
-          <header className="goal-header">
-            <p className="goal-title">Goal Title</p>
-            <ul className="goal-categories">
-              {categories.map((category) => (
-                <Category key={category} name={category} />
-              ))}
-            </ul>
-          </header>
-          <section className="goal-tasks">
-            <ul className="goal-tasks-list">
-              <li className="goal-task">
+    <li className="goal" key={goal.id}>
+      <header className="goal-header">
+        <p className="goal-title">{goal.name}</p>
+        <ul className="goal-categories">
+          {categories.map((category) => (
+            <Category key={category} name={category} />
+          ))}
+        </ul>
+      </header>
+      <section className="goal-tasks">
+        <ul className="goal-tasks-list">
+          {tasks.map((task, index) => {
+            return (
+              <li className="goal-task" key={index}>
                 <label>
-                  <input type="checkbox" />
-                  Resume
+                  <input type="checkbox" checked={task.completed} />
+                  {task.name}
                 </label>
               </li>
-              <li className="goal-task">
-                <label>
-                  <input type="checkbox" />
-                  Research
-                </label>
-              </li>
-              <li className="goal-task">
-                <label>
-                  <input type="checkbox" />
-                  Cover Letter
-                </label>
-              </li>
-            </ul>
-            <section className="goal-progress">
-              <p>Completed:</p>
-              <progress className="progress" value="32" max="100" />
-            </section>
-          </section>
-          <div className="time-remaining">
-            <p>5 days remaining</p>
-          </div>
-        </li>
-        {goals.map((goal) => {
-          return (
-            <li className="goal" key={goal.id}>
-              <header className="goal-header">
-                <p className="goal-title">{goal.name}</p>
-                <ul className="goal-categories">
-                  {categories.map((category) => (
-                    <Category key={category} name={category} />
-                  ))}
-                </ul>
-              </header>
-              <section className="goal-tasks">
-                <ul className="goal-tasks-list">
-                  {tasks.map((task, index) => {
-                    return (
-                      <li className="goal-task" key={index}>
-                        <label>
-                          <input
-                            type="checkbox"
-                            checked={task.completed}
-                            onChange={(e) => {
-                              handleChange(e, index);
-                            }}
-                          />
-                          {task.name}
-                        </label>
-                      </li>
-                    );
-                  })}
+            );
+          })}
 
-                  <li className="goal-task">
-                    <label>
-                      <input type="checkbox" />
-                      Research
-                    </label>
-                  </li>
-                  <li className="goal-task">
-                    <label>
-                      <input type="checkbox" />
-                      Cover Letter
-                    </label>
-                  </li>
-                </ul>
-                <section className="goal-progress">
-                  <p>Completed:</p>
-                  <progress className="progress" value="32" max="100" />
-                </section>
-              </section>
-              <div className="time-remaining">
-                <p>{calculateTime(goal.goal_end)}</p>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-    </>
+          <li className="goal-task">
+            <label>
+              <input type="checkbox" />
+              Research
+            </label>
+          </li>
+          <li className="goal-task">
+            <label>
+              <input type="checkbox" />
+              Cover Letter
+            </label>
+          </li>
+        </ul>
+        <section className="goal-progress">
+          <p>Completed:</p>
+          <progress className="progress" value="32" max="100" />
+        </section>
+      </section>
+      <div className="time-remaining">
+        <p>{calculateTime(goal.goal_end)}</p>
+      </div>
+    </li>
   );
 }

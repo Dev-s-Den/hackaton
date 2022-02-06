@@ -14,6 +14,7 @@ module.exports = () => {
       .then(data => res.json(data))
   })
 
+  // Thiiiiis will create an issue for updating the task i believe, but we will see perhaps it should be a task query
   router.put('/:id', (req, res) => {
     updateTasks(req.body.id, req.body.task_id)
       .then(data => res.json(data))

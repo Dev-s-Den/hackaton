@@ -10,7 +10,7 @@ import './App.scss';
 import NavBar from './components/NavBav';
 import Auth from "./components/Authorization";
 import FilterBar from "./components/FilterBar";
-import Goal from "./components/Goal";
+import Goals from "./components/Goals";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -35,7 +35,7 @@ function App() {
         {!user && <Route path='/login' element={<Auth setUser={setUser} user={user} />} />}
         {user && <Route path='/' element={<>
           <FilterBar user={user} />
-          <Goal user={user} />
+          <Goals user={user} />
         </>} />}
       </Routes>
     </div>
