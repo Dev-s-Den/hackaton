@@ -5,6 +5,7 @@ const cookieSession = require('cookie-session');
 
 // requiring routes go here:____________________________________
 const userRouter = require('./routes/user');
+const goalRouter = require('./routes/goal')
 
 
 
@@ -20,6 +21,7 @@ app.use(cookieSession({
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes go here:_____________________________________________
-app.use('/api/user', userRouter())
+app.use('/api/user', userRouter());
+app.use('/api/goal', goalRouter());
 
 module.exports = app;
