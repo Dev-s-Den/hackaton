@@ -10,7 +10,7 @@ module.exports = () => {
   })
 
   router.post('/:userID', (req, res) => {
-    addGoal(req.body.user_id, req.body.content, req.body.name, req.body.goal_end)
+    addGoal(req.body.user_id, req.body.name, req.body.goal_end)
       .then(data => res.json(data))
   })
 

@@ -8,8 +8,8 @@ module.exports = () => {
       .then(data => res.json(data))
   })
 
-  router.post('', (req, res) => {
-    addTask(req.body.name)
+  router.post('/', (req, res) => {
+    addTask(req.body.tasks, req.body.goal_id)
       .then(data => res.json(data))
   })
 

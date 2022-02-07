@@ -11,11 +11,19 @@ const getTasks = async (goal_id) => {
   }
 }
 
-const addTask = async (name) => {
-  const values = [name];
+const addTask = async (tasks, goal_id) => {
+  let string = ' '
+  const values = [];
+  tasks.forEach(element => {
+    values.push(element);
+    values.push(goal_id);
+  });
+  for (let i = 0; i <= values.length; i + 2) {
+    string += `( $${values[i]}, $${values[i + 1]} ) `
+  }
+
   try {
-    const data = await dbConnection.query(`INSERT INTO task(
-      name) VALUES ($1) RETURNING *`, values);
+    const data = await dbConnection.query(`INSERT INTO task(name, goal_id) VALUES ${string} RETURNING *`, values);
     return data.rows;
   } catch (err) {
     console.error(err.message);
